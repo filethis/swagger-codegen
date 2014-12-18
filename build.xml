@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="developer" default="build">
+
+    <!-- clean -->
+    <target name="clean" description="clean">
+        <delete dir="target"/>
+        <delete dir="dist"/>
+    </target>
+
+    <target name="test.dist.dir.does.not.exist">
+         <condition property="dist.dir.does.not.exist">
+             <not>
+                 <available file="dist" type="dir"/>
+             </not>
+         </condition>
+    </target>
+
+    <!-- build-site -->
+    <!-- NOTE: For now, we check in the built site. It can be recreated by doing a "clean" and running this target -->
+    <!-- on a machine that has "npm" installed. See: https://github.com/swagger-api/swagger-ui -->
+    <target name="build-site" if="dist.dir.does.not.exist" depends="test.dist.dir.does.not.exist" description="build-site">
+
+        <exec executable="npm" dir="." failonerror="true">
+            <arg value="run-script"/>
+            <arg value="build"/>
+        </exec>
+
+    </target>
+
+    <!-- build-package -->
+    <target name="build-package" description="build-package">
+
+        <mkdir dir="target"/>
+        <delete file="target/swagger-ui-site-1.0.zip"/>
+        <zip
+            destfile="target/swagger-ui-site-1.0.zip"
+            basedir="dist"
+        />
+
+    </target>
+
+    <!-- build -->
+    <target name="build" depends="build-site, build-package" description="build"/>
+
+</project>
