@@ -27,5 +27,5 @@ samples/server-generator/scalatra/output/.history
 atlassian-ide-plugin.xml
 .DS_Store
 
-
+target/
 filethis/target/api-client-libraries-1.0.zip

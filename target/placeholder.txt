@@ -1,0 +1,2 @@
+This file prevents build machines that do not have sbt installed from trying to build the generator code.
+Once we have a Kevlar script to install sbt, remove this file.
