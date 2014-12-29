@@ -7,7 +7,7 @@ object FileThisCSharpGenerator extends BasicCSharpGenerator {
   override def templateDir = "csharp"
 
   // where to write generated code
-  override def destinationDir = "filethis-code/csharp/src"
+  override def destinationDir = "filethis/target/csharp/src"
 
   // package for api invoker, error files
   override def invokerPackage = Some("Com.FileThis")
@@ -23,7 +23,7 @@ object FileThisCSharpGenerator extends BasicCSharpGenerator {
     List(
       ("apiInvoker.mustache", destinationDir + java.io.File.separator + invokerPackage.get.replace(".", java.io.File.separator) + java.io.File.separator, "ApiInvoker.cs"),
       ("apiException.mustache", destinationDir + java.io.File.separator + invokerPackage.get.replace(".", java.io.File.separator) + java.io.File.separator, "ApiException.cs"),
-      ("Newtonsoft.Json.dll", "filethis-code/csharp/bin", "Newtonsoft.Json.dll"),
-      ("compile.mustache", "filethis-code/csharp", "compile.bat"))
+      ("Newtonsoft.Json.dll", "filethis/target/csharp/bin", "Newtonsoft.Json.dll"),
+      ("compile.mustache", "filethis/target/csharp", "compile.bat"))
 }
 

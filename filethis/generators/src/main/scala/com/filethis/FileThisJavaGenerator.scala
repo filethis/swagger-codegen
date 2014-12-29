@@ -7,7 +7,7 @@ object FileThisJavaGenerator extends BasicJavaGenerator {
   override def templateDir = "src/main/resources/Java"
 
   // where to write generated code
-  override def destinationDir = "filethis-code/java/src/main/java"
+  override def destinationDir = "filethis/target/java/src/main/java"
 
   // package for api invoker, error files
   override def invokerPackage = Some("com.filethis.client")
@@ -29,5 +29,5 @@ object FileThisJavaGenerator extends BasicJavaGenerator {
       ("apiInvoker.mustache", destinationDir + java.io.File.separator + invokerPackage.get.replace(".", java.io.File.separator) + java.io.File.separator, "ApiInvoker.java"),
       ("JsonUtil.mustache", destinationDir + java.io.File.separator + invokerPackage.get.replace(".", java.io.File.separator) + java.io.File.separator, "JsonUtil.java"),
       ("apiException.mustache", destinationDir + java.io.File.separator + invokerPackage.get.replace(".", java.io.File.separator) + java.io.File.separator, "ApiException.java"),
-      ("pom.mustache", "filethis-code/java", "pom.xml"))
+      ("pom.mustache", "filethis/target/java", "pom.xml"))
 }

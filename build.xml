@@ -29,49 +29,121 @@
 
     <!-- ========================= code ========================= -->
 
-    <!-- NOTE: For now, we check in the filethis-code directory. It can be recreated on a machine that has access to https://filethis.com/api/api-docs/ -->
+    <!-- NOTE: For now, we check in the filethis/target directory. It can be recreated on a machine that has access to https://filethis.com/api/api-docs/ -->
 
-    <target name="test.filethis-code.dir.does.not.exist">
-         <condition property="filethis-code.dir.does.not.exist">
+    <target name="test.filethis.target.dir.does.not.exist">
+         <condition property="filethis.target.dir.does.not.exist">
              <not>
-                 <available file="filethis-code" type="dir"/>
+                 <available file="filethis/target" type="dir"/>
              </not>
          </condition>
     </target>
 
     <!-- build-code -->
-    <target name="build-code" if="filethis-code.dir.does.not.exist" depends="test.filethis-code.dir.does.not.exist" description="build-code">
-        <mkdir dir="filethis-code"/>
-        <exec executable="./build.sh" dir="." failonerror="true"/>
+    <target name="build-code" if="filethis.target.dir.does.not.exist" depends="test.filethis.target.dir.does.not.exist" description="build-code">
+
+        <mkdir dir="filethis/target"/>
+
+        <!-- android-java -->
+        <exec executable="./bin/runscala.sh" dir="." failonerror="true">
+            <arg value="filethis/generators/src/main/scala/com/filethis/FileThisAndroidJavaGenerator.scala"/>
+            <arg value="https://filethis.com/api/api-docs/"/>
+        </exec>
+        <zip
+            basedir="filethis/target/android-java"
+            destfile="filethis/target/android-java.zip"
+        />
+
+        <!-- C# -->
+        <exec executable="./bin/runscala.sh" dir="." failonerror="true">
+            <arg value="filethis/generators/src/main/scala/com/filethis/FileThisCSharpGenerator.scala"/>
+            <arg value="https://filethis.com/api/api-docs/"/>
+        </exec>
+        <zip
+            basedir="filethis/target/csharp"
+            destfile="filethis/target/csharp.zip"
+        />
+
+        <!-- Java -->
+        <exec executable="./bin/runscala.sh" dir="." failonerror="true">
+            <arg value="filethis/generators/src/main/scala/com/filethis/FileThisJavaGenerator.scala"/>
+            <arg value="https://filethis.com/api/api-docs/"/>
+        </exec>
+        <zip
+            basedir="filethis/target/java"
+            destfile="filethis/target/java.zip"
+        />
+
+        <!-- Objective C -->
+        <exec executable="./bin/runscala.sh" dir="." failonerror="true">
+            <arg value="filethis/generators/src/main/scala/com/filethis/FileThisObjcGenerator.scala"/>
+            <arg value="https://filethis.com/api/api-docs/"/>
+        </exec>
+        <zip
+            basedir="filethis/target/objc"
+            destfile="filethis/target/objc.zip"
+        />
+
+        <!-- Python -->
+        <exec executable="./bin/runscala.sh" dir="." failonerror="true">
+            <arg value="filethis/generators/src/main/scala/com/filethis/FileThisPythonGenerator.scala"/>
+            <arg value="https://filethis.com/api/api-docs/"/>
+        </exec>
+        <zip
+            basedir="filethis/target/python"
+            destfile="filethis/target/python.zip"
+        />
+
+        <!-- Ruby -->
+        <exec executable="./bin/runscala.sh" dir="." failonerror="true">
+            <arg value="filethis/generators/src/main/scala/com/filethis/FileThisRubyGenerator.scala"/>
+            <arg value="https://filethis.com/api/api-docs/"/>
+        </exec>
+        <zip
+            basedir="filethis/target/ruby"
+            destfile="filethis/target/ruby.zip"
+        />
+
+        <!-- Scala -->
+        <exec executable="./bin/runscala.sh" dir="." failonerror="true">
+            <arg value="filethis/generators/src/main/scala/com/filethis/FileThisScalaGenerator.scala"/>
+            <arg value="https://filethis.com/api/api-docs/"/>
+        </exec>
+        <zip
+            basedir="filethis/target/scala"
+            destfile="filethis/target/scala.zip"
+        />
+
     </target>
 
     <!-- clean-code -->
     <target name="clean-code" description="clean">
-        <delete dir="filethis-code"/>
+        <delete dir="filethis/target"/>
     </target>
 
 
     <!-- ========================= package ========================= -->
 
-    <target name="test.package.dir.does.not.exist">
-         <condition property="package.dir.does.not.exist">
+    <target name="test.filethis.package.does.not.exist">
+         <condition property="filethis.package.does.not.exist">
              <not>
-                 <available file="filethis-code-1.0.zip"/>
+                 <available file="filethis/target/filethis-api-client-libraries-1.0.zip"/>
              </not>
          </condition>
     </target>
 
     <!-- build-package -->
-    <target name="build-package" if="package.dir.does.not.exist" depends="test.package.dir.does.not.exist"  description="build-package">
+    <target name="build-package" if="filethis.package.does.not.exist" depends="test.filethis.package.does.not.exist"  description="build-package">
         <zip
-                destfile="filethis-code-1.0.zip"
-            basedir="."
+            basedir="filethis/target"
+            includes="*.zip"
+            destfile="filethis/target/filethis-api-client-libraries-1.0.zip"
         />
     </target>
 
     <!-- clean-package -->
     <target name="clean-package" description="clean-package">
-        <delete file="filethis-code-1.0.zip"/>
+        <delete file="filethis/filethis-api-client-libraries-1.0.zip"/>
     </target>
 
 
