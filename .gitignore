@@ -29,4 +29,4 @@ atlassian-ide-plugin.xml
 .DS_Store
 
 
-filethis-api-client-libraries-1.0.zip
+filethis/target/api-client-libraries-1.0.zip

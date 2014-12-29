@@ -127,7 +127,7 @@
     <target name="test.filethis.package.does.not.exist">
          <condition property="filethis.package.does.not.exist">
              <not>
-                 <available file="filethis/target/filethis-api-client-libraries-1.0.zip"/>
+                 <available file="filethis/target/api-client-libraries-1.0.zip"/>
              </not>
          </condition>
     </target>
@@ -137,13 +137,13 @@
         <zip
             basedir="filethis/target"
             includes="*.zip"
-            destfile="filethis/target/filethis-api-client-libraries-1.0.zip"
+            destfile="filethis/target/api-client-libraries-1.0.zip"
         />
     </target>
 
     <!-- clean-package -->
     <target name="clean-package" description="clean-package">
-        <delete file="filethis/filethis-api-client-libraries-1.0.zip"/>
+        <delete file="filethis/api-client-libraries-1.0.zip"/>
     </target>
 
 
