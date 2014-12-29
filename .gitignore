@@ -13,7 +13,6 @@ generated-code/*
 *.swp
 *.swo
 
-/target
 /generated-files
 /nbactions.xml
 *.pyc
