@@ -7,5 +7,5 @@ object FileThisRubyGenerator extends BasicRubyGenerator {
   override def templateDir = "src/main/resources/ruby"
 
   // where to write generated code
-  override def destinationDir = "filethis/target/ruby"
+  override def destinationDir = "filethis/target-code/ruby"
 }

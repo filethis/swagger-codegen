@@ -5,7 +5,7 @@ import java.io.File
 object FileThisPythonGenerator extends BasicPythonGenerator {
   def main(args: Array[String]) = generateClient(args)
 
-  override def destinationDir = "filethis/target/python"
+  override def destinationDir = "filethis/target-code/python"
 
   override def supportingFiles = List(
     ("__init__.mustache", destinationDir, "__init__.py"),

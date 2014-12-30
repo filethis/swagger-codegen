@@ -7,7 +7,7 @@ object FileThisScalaGenerator extends BasicScalaGenerator {
   override def invokerPackage = Some("com.filethis.client")
 
   // where to write generated code
-  override def destinationDir = "filethis/target/scala/src/main/scala"
+  override def destinationDir = "filethis/target-code/scala/src/main/scala"
 
   // package for models
   override def modelPackage = Some("com.filethis.client.model")
@@ -18,6 +18,6 @@ object FileThisScalaGenerator extends BasicScalaGenerator {
   // supporting classes
   override def supportingFiles = List(
     ("apiInvoker.mustache", destinationDir + java.io.File.separator + invokerPackage.get.replace(".", java.io.File.separator) + java.io.File.separator, "ApiInvoker.scala"),
-    ("pom.mustache", "filethis/target/scala", "pom.xml")
+    ("pom.mustache", "filethis/target-code/scala", "pom.xml")
   )
 }

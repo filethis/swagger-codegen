@@ -4,7 +4,7 @@ object FileThisObjcGenerator extends BasicObjcGenerator {
   def main(args: Array[String]) = generateClient(args)
 
   // where to write generated code
-  val outputFolder = "filethis/target/objc"
+  val outputFolder = "filethis/target-code/objc"
   override def destinationDir = outputFolder + java.io.File.separator + "client"
 
   override def templateDir = "objc"

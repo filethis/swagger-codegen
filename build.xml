@@ -29,20 +29,20 @@
 
     <!-- ========================= code ========================= -->
 
-    <!-- NOTE: For now, we check in the filethis/target directory. It can be recreated on a machine that has access to https://filethis.com/api/api-docs/ -->
+    <!-- NOTE: For now, we check in the filethis/target-code directory. It can be recreated on a machine that has access to https://filethis.com/api/api-docs/ -->
 
-    <target name="test.filethis.target.dir.does.not.exist">
-         <condition property="filethis.target.dir.does.not.exist">
+    <target name="test.filethis.target.code.dir.does.not.exist">
+         <condition property="filethis.target.code.dir.does.not.exist">
              <not>
-                 <available file="filethis/target" type="dir"/>
+                 <available file="filethis/target-code" type="dir"/>
              </not>
          </condition>
     </target>
 
     <!-- build-code -->
-    <target name="build-code" if="filethis.target.dir.does.not.exist" depends="test.filethis.target.dir.does.not.exist" description="build-code">
+    <target name="build-code" if="filethis.target.code.dir.does.not.exist" depends="test.filethis.target.code.dir.does.not.exist" description="build-code">
 
-        <mkdir dir="filethis/target"/>
+        <mkdir dir="filethis/target-code"/>
 
         <!-- android-java -->
         <exec executable="./bin/runscala.sh" dir="." failonerror="true">
@@ -50,8 +50,8 @@
             <arg value="https://filethis.com/api/api-docs/"/>
         </exec>
         <zip
-            basedir="filethis/target/android-java"
-            destfile="filethis/target/android-java.zip"
+            basedir="filethis/target-code/android-java"
+            destfile="filethis/target-code/android-java.zip"
         />
 
         <!-- C# -->
@@ -60,8 +60,8 @@
             <arg value="https://filethis.com/api/api-docs/"/>
         </exec>
         <zip
-            basedir="filethis/target/csharp"
-            destfile="filethis/target/csharp.zip"
+            basedir="filethis/target-code/csharp"
+            destfile="filethis/target-code/csharp.zip"
         />
 
         <!-- Java -->
@@ -70,8 +70,8 @@
             <arg value="https://filethis.com/api/api-docs/"/>
         </exec>
         <zip
-            basedir="filethis/target/java"
-            destfile="filethis/target/java.zip"
+            basedir="filethis/target-code/java"
+            destfile="filethis/target-code/java.zip"
         />
 
         <!-- Objective C -->
@@ -80,8 +80,8 @@
             <arg value="https://filethis.com/api/api-docs/"/>
         </exec>
         <zip
-            basedir="filethis/target/objc"
-            destfile="filethis/target/objc.zip"
+            basedir="filethis/target-code/objc"
+            destfile="filethis/target-code/objc.zip"
         />
 
         <!-- Python -->
@@ -90,8 +90,8 @@
             <arg value="https://filethis.com/api/api-docs/"/>
         </exec>
         <zip
-            basedir="filethis/target/python"
-            destfile="filethis/target/python.zip"
+            basedir="filethis/target-code/python"
+            destfile="filethis/target-code/python.zip"
         />
 
         <!-- Ruby -->
@@ -100,8 +100,8 @@
             <arg value="https://filethis.com/api/api-docs/"/>
         </exec>
         <zip
-            basedir="filethis/target/ruby"
-            destfile="filethis/target/ruby.zip"
+            basedir="filethis/target-code/ruby"
+            destfile="filethis/target-code/ruby.zip"
         />
 
         <!-- Scala -->
@@ -110,40 +110,40 @@
             <arg value="https://filethis.com/api/api-docs/"/>
         </exec>
         <zip
-            basedir="filethis/target/scala"
-            destfile="filethis/target/scala.zip"
+            basedir="filethis/target-code/scala"
+            destfile="filethis/target-code/scala.zip"
         />
 
     </target>
 
     <!-- clean-code -->
     <target name="clean-code" description="clean">
-        <delete dir="filethis/target"/>
+        <delete dir="filethis/target-code"/>
     </target>
 
 
     <!-- ========================= package ========================= -->
 
-    <target name="test.filethis.package.does.not.exist">
-         <condition property="filethis.package.does.not.exist">
+    <target name="test.filethis.target.package.does.not.exist">
+         <condition property="filethis.target.package.does.not.exist">
              <not>
-                 <available file="filethis/target/api-client-libraries-1.0.zip"/>
+                 <available file="filethis/target-package/api-client-libraries-1.0.zip"/>
              </not>
          </condition>
     </target>
 
     <!-- build-package -->
-    <target name="build-package" if="filethis.package.does.not.exist" depends="test.filethis.package.does.not.exist"  description="build-package">
+    <target name="build-package" if="filethis.target.package.does.not.exist" depends="test.filethis.target.package.does.not.exist"  description="build-package">
         <zip
-            basedir="filethis/target"
+            basedir="filethis/target-code"
             includes="*.zip"
-            destfile="filethis/target/api-client-libraries-1.0.zip"
+            destfile="filethis/target-package/api-client-libraries-1.0.zip"
         />
     </target>
 
     <!-- clean-package -->
     <target name="clean-package" description="clean-package">
-        <delete file="filethis/api-client-libraries-1.0.zip"/>
+        <delete file="target-package/api-client-libraries-1.0.zip"/>
     </target>
 
 
