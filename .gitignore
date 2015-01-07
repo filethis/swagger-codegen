@@ -27,6 +27,6 @@ samples/server-generator/scalatra/output/.history
 atlassian-ide-plugin.xml
 .DS_Store
 
-target
+target/
 filethis/target-code
 filethis/target-package
