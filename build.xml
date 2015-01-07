@@ -13,15 +13,17 @@
     </target>
 
     <!-- build-generators -->
-    <target name="build-generators" if="target.dir.does.not.exist" depends="test.target.dir.does.not.exist" description="build-generator">
+    <target name="build-generators" if="target.dir.does.not.exist" depends="test.target.dir.does.not.exist" description="build-generators">
         <exec executable="sbt" dir="." failonerror="true">
             <arg value="assembly"/>
         </exec>
     </target>
 
     <!-- clean-generators -->
-    <target name="clean-generators" description="clean">
+    <target name="clean-generators" description="clean-generators">
         <delete dir="target"/>
+        <delete dir="project/target"/>
+        <delete dir="project/project"/>
     </target>
 
 
@@ -113,7 +115,7 @@
     </target>
 
     <!-- clean-code -->
-    <target name="clean-code" description="clean">
+    <target name="clean-code" description="clean-code">
         <delete dir="filethis/target-code"/>
     </target>
 

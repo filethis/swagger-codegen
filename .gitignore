@@ -13,6 +13,7 @@ generated-code/*
 *.swp
 *.swo
 
+/target
 /generated-files
 /nbactions.xml
 *.pyc
@@ -22,11 +23,12 @@ samples/server-generator/node/output/node_modules
 samples/server-generator/scalatra/target
 samples/server-generator/scalatra/output/.history
 
+target
 .idea
 .lib
 atlassian-ide-plugin.xml
 .DS_Store
+*~
 
-target/
 filethis/target-code
 filethis/target-package
