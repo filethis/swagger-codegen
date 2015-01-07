@@ -4,8 +4,6 @@
 
     <!-- ========================= generator ========================= -->
 
-    <!-- NOTE: For now, we check in the target directory. It can be recreated on a machine that has "sbt" installed. See: README.md in this directory -->
-
     <target name="test.target.dir.does.not.exist">
          <condition property="target.dir.does.not.exist">
              <not>
@@ -28,8 +26,6 @@
 
 
     <!-- ========================= code ========================= -->
-
-    <!-- NOTE: For now, we check in the filethis/target-code directory. It can be recreated on a machine that has access to https://filethis.com/api/api-docs/ -->
 
     <target name="test.filethis.target.code.dir.does.not.exist">
          <condition property="filethis.target.code.dir.does.not.exist">
@@ -154,15 +150,7 @@
 
     <!-- ========================= clean ========================= -->
 
-    <target name="clean" depends="clean-package" description="clean"/>
-
-
-    <!-- ========================= clean-all ========================= -->
-
-    <!-- Only do this if you're prepared to re-build both the generator (which requires that "sbt" is installed) -->
-    <!-- and the code (which requires access to https://filethis.com/api/api-docs/) -->
-
-    <target name="clean-all" depends="clean-generators, clean-code, clean-package" description="clean-all"/>
+    <target name="clean" depends="clean-generators, clean-code, clean-package" description="clean"/>
 
 
 </project>
